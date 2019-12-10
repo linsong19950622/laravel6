@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Admin;
 
 return [
 
@@ -16,7 +17,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'home',
         'passwords' => 'users',
     ],
 
@@ -38,9 +39,14 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'home' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
         ],
 
         'api' => [
@@ -72,6 +78,11 @@ return [
             'driver' => 'eloquent',
             'model' => User::class,
         ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => Admin::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

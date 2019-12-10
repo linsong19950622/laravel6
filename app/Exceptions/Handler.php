@@ -28,10 +28,13 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
     /**
+     * 处理异常-业务（写日志或者发送邮件等）
      * @param Exception $exception
      * @return mixed|void
      * @throws Exception
+     * User: 林松    Date: 2019/12/6
      */
     public function report(Exception $exception)
     {
@@ -39,11 +42,11 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * 响应
+     * @param \Illuminate\Http\Request $request
+     * @param Exception $exception
+     * @return Response|\Symfony\Component\HttpFoundation\Response
+     * User: 林松    Date: 2019/12/6
      */
     public function render($request, Exception $exception)
     {

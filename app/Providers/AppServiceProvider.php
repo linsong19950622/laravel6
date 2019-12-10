@@ -23,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        include  (__DIR__ . '/../Components/helpers.php');//引入全局方法
     }
 }

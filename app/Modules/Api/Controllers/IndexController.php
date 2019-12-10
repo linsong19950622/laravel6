@@ -19,7 +19,7 @@ class IndexController extends BaseController
         $this->service = $service;
     }
 
-    public function _validateForm()
+    public function validateForm()
     {
         return [
             'getIndex' => [

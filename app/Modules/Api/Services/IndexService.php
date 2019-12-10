@@ -8,7 +8,9 @@
 namespace App\Modules\Api\Services;
 
 
-class IndexService
+use App\Modules\Common\BaseService;
+
+class IndexService extends BaseService
 {
 
     public function getIndex()

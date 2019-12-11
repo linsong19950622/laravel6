@@ -16,7 +16,7 @@ class AdminRepository
 
     public function hashPassword($password)
     {
-        return Hash::make($password);
+        return bcrypt($password);
     }
 
     public function hashCheck($password, $hashPassword)

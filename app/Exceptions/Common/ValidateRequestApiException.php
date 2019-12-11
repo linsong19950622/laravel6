@@ -9,23 +9,20 @@ namespace App\Exceptions\Common;
 
 /**
  * 表单验证错误异常
- * Class ValidateRequestException
+ * Class ValidateRequestApiException
  * @package App\Exceptions\Common
+ * User: 林松
+ * Date: 2019/12/11
+ * Time: 上午 9:31
  */
-class ValidateRequestApiException extends BaseException
+class ValidateRequestApiException extends ApiException
 {
     protected $code = 422;
 
     public function __construct($data = [], $message = '参数验证失败', \Exception $previous = null)
     {
+        $data = getJsonData($data, $message, false, $this->code);
 
-        $data = [
-            'msg' => $message,
-            'status' => false,
-            'code' => $this->code,
-            'data' => $data,
-            'time' => time()
-        ];
-        parent::__construct($data, json_encode($data), 200);
+        parent::__construct($data, $message, 200);
     }
 }

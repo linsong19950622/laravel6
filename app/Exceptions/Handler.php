@@ -2,9 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Common\ApiException;
 use App\Exceptions\Common\BaseException;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class Handler extends ExceptionHandler
@@ -53,7 +55,9 @@ class Handler extends ExceptionHandler
         $code = $exception->getCode();
         $message = $exception->getMessage();
 
-        if ($exception instanceof BaseException) {
+        if ($exception instanceof ApiException) {
+            return new JsonResponse($exception->getData());
+        } elseif ($exception instanceof BaseException) {
             return new Response($message, $code);
         }
 

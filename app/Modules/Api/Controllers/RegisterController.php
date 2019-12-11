@@ -1,14 +1,14 @@
 <?php
 /**
- * User: Administrator
- * Date: 2019/12/9
- * Time: 下午 2:26
+ * User: 林松
+ * Date: 2019/12/11
+ * Time: 上午 10:30
  */
 
-namespace App\Modules\Admin\Controllers;
+namespace App\Modules\Api\Controllers;
 
 
-use App\Modules\Admin\Services\RegisterService;
+use App\Modules\Api\Services\RegisterService;
 use Illuminate\Http\Request;
 
 class RegisterController extends BaseController
@@ -27,11 +27,11 @@ class RegisterController extends BaseController
                 'rules' => [
                     'username' => [
                         config('rule.username'),
-                        'unique:admin'
+                        'unique:user'
                     ],
                     'mobile_phone' => [
                         config('rule.mobile_phone'),
-                        'unique:admin'
+                        'unique:user'
                     ],
                     'password' => config('rule.password'),
                     'password_confirmation' => [
@@ -43,23 +43,15 @@ class RegisterController extends BaseController
         ];
     }
 
-    public function index(Request $request)
-    {
-        return $this->view('auth.register');
-    }
-
     public function register(Request $request)
     {
         $username = $request->get('username');
         $password = $request->get('password');
         $mobilePhone = $request->get('mobile_phone');
+
         $this->service->register($username, $mobilePhone, $password);
+        $result = $this->service->login($username);
 
-        return redirect()->route('admin.login.index');
-    }
-
-    public function passwordForget()
-    {
-
+        return $this->jsonResult($result);
     }
 }

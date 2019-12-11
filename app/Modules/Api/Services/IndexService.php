@@ -7,7 +7,7 @@
 
 namespace App\Modules\Api\Services;
 
-
+use App\Models\User;
 use App\Modules\Common\BaseService;
 
 class IndexService extends BaseService
@@ -15,8 +15,8 @@ class IndexService extends BaseService
 
     public function getIndex()
     {
-
-        return [];
+        $user = User::user();
+        return $user;
     }
 
 }

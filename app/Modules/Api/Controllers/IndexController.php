@@ -19,22 +19,6 @@ class IndexController extends BaseController
         $this->service = $service;
     }
 
-    public function validateForm()
-    {
-        return [
-            'getIndex' => [
-                'rules' => [
-                    'type' => 'required',
-                    'name' => [
-                        new SensitiveWordRule()
-                    ]
-                ],
-                'messages' => [],
-                'attributes' => [],
-            ]
-        ];
-    }
-
     public function getIndex()
     {
         $result = $this->service->getIndex();

@@ -21,7 +21,7 @@ class LoginService extends BaseService
         $this->adminRepository = $adminRepository;
     }
 
-    public function login($username, $password, $rememberMe)
+    public function login($username, $password, $rememberMe = false)
     {
         $admin = $this->adminRepository->findAdminByUsername($username);
 

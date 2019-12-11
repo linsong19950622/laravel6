@@ -11,4 +11,7 @@
 return [
     'username_password.fail' => '用户名或密码错误',
     'username.not_exist' => '用户名不存在',
+    'logout' => '退出成功',
+    'register.fail' => '注册失败',
+    'token.not_exist' => 'token不存在'
 ];

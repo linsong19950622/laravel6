@@ -23,4 +23,9 @@ class BaseException extends HttpException
         $this->data = $data;
         parent::__construct($code, $message, $previous, [], $code);
     }
+
+    public function getData()
+    {
+        return $this->data;
+    }
 }

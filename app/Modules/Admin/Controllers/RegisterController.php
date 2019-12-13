@@ -25,19 +25,10 @@ class RegisterController extends BaseController
         return [
             'register' => [
                 'rules' => [
-                    'username' => [
-                        config('rule.username'),
-                        'unique:admin'
-                    ],
-                    'mobile_phone' => [
-                        config('rule.mobile_phone'),
-                        'unique:admin'
-                    ],
+                    'username' => array_merge(config('rule.username'), ['unique:admin']),
+                    'mobile_phone' => array_merge(config('rule.mobile_phone'), ['unique:admin']),
                     'password' => config('rule.password'),
-                    'password_confirmation' => [
-                        config('rule.password'),
-                        'same:password'
-                    ]
+                    'password_confirmation' => array_merge(config('rule.password'), ['same:password']),
                 ]
             ]
         ];

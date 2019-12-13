@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "OpenApi API文档管理中心",
+        "description": "已开放接口，使用说明及请求操作",
+        "contact": {
+            "name": "林松"
+        },
+        "version": "3.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "index"
+                ],
+                "summary": "首页",
+                "description": "首页",
+                "operationId": "1",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/login/login": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "用户登录",
+                "description": "执行用户登录",
+                "operationId": "1",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "用户名",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/login/logout": {
+            "get": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "用户退出",
+                "description": "执行用户退出",
+                "operationId": "1",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/register/register": {
+            "post": {
+                "tags": [
+                    "register"
+                ],
+                "summary": "用户注册",
+                "description": "注册一个新用户",
+                "operationId": "1",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "用户名",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mobile_phone",
+                        "in": "query",
+                        "description": "手机号",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "query",
+                        "description": "确认密码",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Bearer": {
+                "type": "apiKey",
+                "name": "token",
+                "in": "query"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "register",
+            "description": "用户注册"
+        },
+        {
+            "name": "login",
+            "description": "用户登录"
+        },
+        {
+            "name": "index",
+            "description": "首页"
+        }
+    ]
+}

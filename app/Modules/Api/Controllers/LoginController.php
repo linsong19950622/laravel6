@@ -32,6 +32,41 @@ class LoginController extends BaseController
         ];
     }
 
+    /**
+     * 用户登录
+     * @OA\Post(
+     *     path="/login/login",
+     *     operationId="1",
+     *     tags={"login"},
+     *     summary="用户登录",
+     *     description="执行用户登录",
+     *     @OA\Parameter(
+     *         name="username",
+     *         description="用户名",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(
+     *              type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="password",
+     *         description="密码",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(
+     *              type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *     ),
+     * )
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * User: 林松    Date: 2019/12/13
+     */
     public function login(Request $request)
     {
         $username = $request->get('username');
@@ -42,6 +77,26 @@ class LoginController extends BaseController
         return $this->jsonResult($result);
     }
 
+    /**
+     * 用户退出
+     * @OA\Get(
+     *     path="/login/logout",
+     *     operationId="1",
+     *     tags={"login"},
+     *     summary="用户退出",
+     *     description="执行用户退出",
+     *     security={
+     *          {"Bearer":{}}
+     *      },
+     *     @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *     ),
+     * )
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * User: 林松    Date: 2019/12/13
+     */
     public function logout(Request $request)
     {
         $this->service->logout($request->get('token'));

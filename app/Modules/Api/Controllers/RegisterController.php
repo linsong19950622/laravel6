@@ -25,24 +25,68 @@ class RegisterController extends BaseController
         return [
             'register' => [
                 'rules' => [
-                    'username' => [
-                        config('rule.username'),
-                        'unique:user'
-                    ],
-                    'mobile_phone' => [
-                        config('rule.mobile_phone'),
-                        'unique:user'
-                    ],
+                    'username' => array_merge(config('rule.username'), ['unique:user']),
+                    'mobile_phone' => array_merge(config('rule.mobile_phone'), ['unique:user']),
                     'password' => config('rule.password'),
-                    'password_confirmation' => [
-                        config('rule.password'),
-                        'same:password'
-                    ]
+                    'password_confirmation' => array_merge(config('rule.password'), ['same:password']),
                 ]
             ]
         ];
     }
 
+    /**
+     * 用户注册
+     * @OA\Post(
+     *     path="/register/register",
+     *     operationId="1",
+     *     tags={"register"},
+     *     summary="用户注册",
+     *     description="注册一个新用户",
+     *     @OA\Parameter(
+     *         name="username",
+     *         description="用户名",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(
+     *              type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="mobile_phone",
+     *         description="手机号",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(
+     *              type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="password",
+     *         description="密码",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(
+     *              type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="password_confirmation",
+     *         description="确认密码",
+     *         required=true,
+     *         in="query",
+     *         @OA\Schema(
+     *              type="string"
+     *         )
+     *     ),
+     *    @OA\Response(
+     *         response=200,
+     *         description="successful operation"
+     *     ),
+     * )
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * User: 林松    Date: 2019/12/13
+     */
     public function register(Request $request)
     {
         $username = $request->get('username');

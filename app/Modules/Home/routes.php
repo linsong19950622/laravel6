@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'IndexController@index')->name('home.index');
+Route::get('kafka', 'KafkaController@index')->name('home.kafka.index');//kafka测试路由
 
 //兜底路由 类似404
 Route::fallback(function () {
